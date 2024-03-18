@@ -144,3 +144,68 @@ In this function:
 - The function returns the generated text as a string.
 
 You can adjust the `order` parameter to experiment with different levels of context for predicting the next word. Higher order values capture more context but may result in overfitting, especially for smaller corpora. Additionally, you can modify the `length` parameter to control the length of the generated text.
+
+
+**User**: Write a python function generate(filename: str, start_words: list[str], chain_length: int, num_generated: int) -> str which takes a filename, a chain length, a list of start words which has to be exactly as long as the chain_length (why?), and an integer num_generated and returns a sentence num_generated words long which sounds similar to the text contained in filename.
+
+**ChatGPT**: Below is a Python function that generates text based on the specified requirements:
+
+```python
+import random
+
+def generate(filename: str, start_words: list[str], chain_length: int, num_generated: int) -> str:
+    """
+    Generate a sentence similar to the text contained in the file using Markov chains.
+    
+    Args:
+    - filename (str): The name of the file containing the input text corpus.
+    - start_words (list[str]): A list of start words exactly as long as the chain_length.
+    - chain_length (int): The order of the Markov chain.
+    - num_generated (int): The number of words in the generated sentence.
+    
+    Returns:
+    - str: The generated sentence.
+    """
+    # Read the content of the file
+    with open(filename, 'r', encoding='utf-8') as file:
+        corpus = file.read().split()
+    
+    # Initialize a dictionary to store transition probabilities
+    markov_dict = {}
+    
+    # Construct the Markov chain
+    for i in range(len(corpus) - chain_length):
+        current_state = tuple(corpus[i:i + chain_length])
+        next_state = corpus[i + chain_length]
+        if current_state not in markov_dict:
+            markov_dict[current_state] = []
+        markov_dict[current_state].append(next_state)
+    
+    # Generate text
+    current_state = tuple(start_words)
+    generated_sentence = list(current_state)
+    
+    while len(generated_sentence) < num_generated:
+        if current_state in markov_dict:
+            next_word = random.choice(markov_dict[current_state])
+            generated_sentence.append(next_word)
+            current_state = tuple(generated_sentence[-chain_length:])
+        else:
+            break
+    
+    return ' '.join(generated_sentence)
+
+# Example usage:
+generated_sentence = generate("input.txt", start_words=["The", "cat", "sat"], chain_length=2, num_generated=10)
+print("Generated Sentence:", generated_sentence)
+```
+
+In this function:
+
+- The `generate` function takes four arguments: `filename` (the name of the file containing the input text corpus), `start_words` (a list of start words exactly as long as the `chain_length`), `chain_length` (the order of the Markov chain), and `num_generated` (the number of words in the generated sentence).
+- It reads the content of the specified file and tokenizes it into a list of words.
+- Then, it constructs a Markov chain based on the input corpus and the specified chain length.
+- The function generates a new sentence by starting with the given start words and iteratively selecting the next word based on the transition probabilities learned from the corpus.
+- Finally, it returns the generated sentence as a string.
+
+Make sure to replace `"input.txt"` with the actual filename containing your input text corpus.
