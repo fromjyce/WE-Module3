@@ -202,3 +202,26 @@ print(score(dice))
 ```
 
 This function calculates the score for each category based on the given dice rolls and returns a dictionary where the keys are the names of the categories and the values are the corresponding scores.
+
+**User**: Ok can you redefine what exactly is the function trying to do.
+
+**ChatGPT**: Certainly! The `score` function is designed to calculate the score for each Yahtzee category based on a given set of dice rolls. Here's a breakdown of what the function does:
+
+1. **Input**: The function takes a list of integers representing the dice rolls as its input parameter.
+
+2. **Dice Counts**: It calculates the count of each number rolled using the `Counter` class from the `collections` module.
+
+3. **Scoring Categories**: For each Yahtzee category, the function determines the score based on the rules of the game:
+
+   - **Ones through Sixes**: Scores the sum of all dice showing the corresponding number (e.g., the sum of all ones, twos, etc.).
+   - **Three of a Kind**: Scores the sum of all dice if at least three dice have the same number.
+   - **Four of a Kind**: Scores the sum of all dice if at least four dice have the same number.
+   - **Full House**: Scores 25 if there are two dice with one number and three dice with another number.
+   - **Small Straight**: Scores 30 if there is a sequence of four consecutive numbers in the dice roll.
+   - **Large Straight**: Scores 40 if there is a sequence of five consecutive numbers in the dice roll.
+   - **Yahtzee**: Scores 50 if all five dice have the same number.
+   - **Chance**: Scores the sum of all dice, regardless of the combination.
+
+4. **Output**: The function returns a dictionary where the keys are the names of the Yahtzee categories and the values are the corresponding scores for those categories based on the input dice rolls.
+
+Overall, the `score` function provides a convenient way to determine the score for each Yahtzee category, allowing players to easily track their progress during the game.
