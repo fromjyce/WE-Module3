@@ -40,7 +40,7 @@ def splash_screen():
     screen.blit(image2, ((width - image2_width) // 2, (height - image2_height) // 4 * 3))
 
     pygame.display.flip()
-    time.sleep(10)
+    time.sleep(5)
 
 def main_screen():
     screen.fill(background_color)
