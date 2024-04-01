@@ -31,6 +31,12 @@ def splash_screen():
     screen.fill(background_color)
 
     screen.blit(image1, ((width - image1_width) // 2, (height - image1_height) // 4))
+    
+    font = pygame.font.SysFont(None, 35)
+    text_surface = font.render("Developed using", True, (0, 0, 0))
+    text_rect = text_surface.get_rect(center=(width // 2, (height // 2) + 30))  
+    screen.blit(text_surface, text_rect)
+
     screen.blit(image2, ((width - image2_width) // 2, (height - image2_height) // 4 * 3))
 
     pygame.display.flip()
@@ -40,7 +46,7 @@ def main_screen():
     screen.fill(background_color)
     
     font = pygame.font.SysFont(None, 48)
-    text = font.render("Hello World", True, (255, 255, 255))  # White text
+    text = font.render("Hello World", True, (255, 255, 255))  
     text_rect = text.get_rect(center=(width // 2, height // 2))
     screen.blit(text, text_rect)
 
