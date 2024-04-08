@@ -12,7 +12,7 @@ background_color = (13, 116, 47)  # green
 
 #screen
 screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption("My Pygame Window")
+pygame.display.set_caption("Diamond Bidding Game")
 
 #images for splash screen
 image1 = pygame.image.load(r'C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Images\Name.png')
@@ -43,7 +43,39 @@ def splash_screen():
     time.sleep(5)
 
 def choosing_suits_page():
-    print("choose")
+    screen.fill(background_color)
+    font = pygame.font.SysFont(None, 48)
+    text = font.render("Choose a Deck", True, (0, 0, 0))
+    text_rect = text.get_rect(center=(width // 2, height // 2 - 175))
+    screen.blit(text, text_rect)
+
+    spade_deck_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Spades\A.png")
+    heart_deck_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Hearts\A.png")
+    club_deck_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Clubs\A.png")
+    back_button_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Images\BackButton.png")
+
+    card_width = 125
+    card_height = 175
+    button_width = 325
+    button_height = 325
+
+    spade_deck_image = pygame.transform.scale(spade_deck_image, (card_width, card_height))
+    heart_deck_image = pygame.transform.scale(heart_deck_image, (card_width, card_height))
+    club_deck_image = pygame.transform.scale(club_deck_image, (card_width, card_height))
+    back_button_image = pygame.transform.scale(back_button_image, (button_width, button_height))
+
+    spade_deck_button_rect = spade_deck_image.get_rect(center=(width // 2 - 200, height // 2 - 40))
+    heart_deck_image_rect = heart_deck_image.get_rect(center=(width // 2 , height // 2 - 40))
+    club_deck_button_rect = club_deck_image.get_rect(center=(width // 2 + 200, height // 2 - 40))    
+    back_button_image_rect = back_button_image.get_rect(center=(width // 2, height // 2 + 130))
+
+    screen.blit(spade_deck_image, spade_deck_button_rect)
+    screen.blit(heart_deck_image, heart_deck_image_rect)
+    screen.blit(club_deck_image, club_deck_button_rect)
+    screen.blit(back_button_image, back_button_image_rect)
+
+
+    pygame.display.flip()
 
 def helping_game_page():
     print("help")
