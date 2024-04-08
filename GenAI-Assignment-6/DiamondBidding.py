@@ -42,15 +42,68 @@ def splash_screen():
     pygame.display.flip()
     time.sleep(5)
 
+def choosing_suits_page():
+    print("choose")
+
+def helping_game_page():
+    print("help")
+
+def exit_button():
+    pygame.quit()
+    sys.exit()
+
 def main_screen():
     screen.fill(background_color)
-    
+
     font = pygame.font.SysFont(None, 48)
-    text = font.render("Hello World", True, (255, 255, 255))  
-    text_rect = text.get_rect(center=(width // 2, height // 2))
+    text = font.render("Diamond Bidding Game", True, (0, 0, 0))
+    text_rect = text.get_rect(center=(width // 2, height // 2 - 150))
     screen.blit(text, text_rect)
 
+    play_button_image = pygame.image.load(r'C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Images\PlayButton.png')
+    help_button_image = pygame.image.load(r'C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Images\HelpButton.png')
+    exit_button_image = pygame.image.load(r'C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Images\ExitButton.png')
+
+    button_width = 325
+    button_height = 325
+    play_button_image = pygame.transform.scale(play_button_image, (button_width, button_height))
+    help_button_image = pygame.transform.scale(help_button_image, (button_width, button_height))
+    exit_button_image = pygame.transform.scale(exit_button_image, (button_width, button_height))
+
+    play_button_rect = play_button_image.get_rect(center=(width // 2, height // 2 - 50))
+    help_button_rect = help_button_image.get_rect(center=(width // 2, height // 2 + 50))
+    exit_button_rect = exit_button_image.get_rect(center=(width // 2, height // 2 + 150))
+
+    screen.blit(play_button_image, play_button_rect)
+    screen.blit(help_button_image, help_button_rect)
+    screen.blit(exit_button_image, exit_button_rect)
+
     pygame.display.flip()
+
+    # Define ranges for buttons
+    play_button_range_x = range(303, 498)
+    play_button_range_y = range(210, 290)
+
+    help_button_range_x = range(304, 497)
+    help_button_range_y = range(310, 388)
+
+    exit_button_range_x = range(310, 488)
+    exit_button_range_y = range(420, 482)
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_x, mouse_y = pygame.mouse.get_pos()
+                #print("Mouse Position:", mouse_x, mouse_y)  # Debug information
+                if mouse_x in play_button_range_x and mouse_y in play_button_range_y:
+                    choosing_suits_page()
+                elif mouse_x in help_button_range_x and mouse_y in help_button_range_y:
+                    helping_game_page()
+                elif mouse_x in exit_button_range_x and mouse_y in exit_button_range_y:
+                    exit_button()
 
 
 splash_screen()
