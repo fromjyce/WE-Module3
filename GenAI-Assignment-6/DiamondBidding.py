@@ -79,9 +79,6 @@ def spades_page():
     display_card_width = 90
     display_card_height = 140
 
-    selected_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Images\Back.png")
-    selected_card_image = pygame.transform.scale(selected_card_image, (display_card_width, display_card_height))
-
     #first row
     ace_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Spades\A.png")
     ace_card_image = pygame.transform.scale(ace_card_image, (display_card_width, display_card_height))
@@ -231,8 +228,12 @@ def spades_page():
                 elif mouse_x in king_button_range_x and mouse_y in king_button_range_y:
                     print("K")
                 elif mouse_x in next_button_range_x and mouse_y in next_button_range_y:
-                    current_card_index = (current_card_index + 1) % len(cards)  
-                    spades_page()
+                    current_card_index = (current_card_index + 1) % len(cards)  # Update current card index
+                    revealed_card = cards[current_card_index]  # Update revealed card
+                    diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
+                    diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
+                    screen.blit(diamond_card_image, diamond_card_button_rect)
+                    pygame.display.flip()
 
 def hearts_page():
     screen.fill(background_color)
