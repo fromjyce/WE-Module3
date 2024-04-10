@@ -42,6 +42,33 @@ def splash_screen():
     pygame.display.flip()
     time.sleep(5)
 
+def spades_page():
+    screen.fill(background_color)
+    font = pygame.font.SysFont(None, 48)
+    text = font.render("Spade", True, (0, 0, 0))
+    text_rect = text.get_rect(center=(width // 2, height // 2 - 175))
+    screen.blit(text, text_rect)
+
+    pygame.display.flip()
+
+def hearts_page():
+    screen.fill(background_color)
+    font = pygame.font.SysFont(None, 48)
+    text = font.render("Hearts", True, (0, 0, 0))
+    text_rect = text.get_rect(center=(width // 2, height // 2 - 175))
+    screen.blit(text, text_rect)
+
+    pygame.display.flip()
+
+def clubs_page():
+    screen.fill(background_color)
+    font = pygame.font.SysFont(None, 48)
+    text = font.render("Clubs", True, (0, 0, 0))
+    text_rect = text.get_rect(center=(width // 2, height // 2 - 175))
+    screen.blit(text, text_rect)
+
+    pygame.display.flip()
+
 def choosing_suits_page():
     screen.fill(background_color)
     font = pygame.font.SysFont(None, 48)
@@ -96,13 +123,13 @@ def choosing_suits_page():
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_x, mouse_y = pygame.mouse.get_pos()
-                print("Mouse Position:", mouse_x, mouse_y)  # Debug information
+                #print("Mouse Position:", mouse_x, mouse_y)  # Debug information
                 if mouse_x in spade_deck_button_range_x and mouse_y in spade_deck_button_range_y:
-                    print("spade")
+                    spades_page()
                 elif mouse_x in heart_deck_button_range_x and mouse_y in heart_deck_button_range_y:
-                    print("heart")
+                    hearts_page()
                 elif mouse_x in club_deck_button_range_x and mouse_y in club_deck_button_range_y:
-                    print("club")
+                    clubs_page()
                 elif mouse_x in back_button_image_rect_range_x and mouse_y in back_button_image_rect_range_y:
                     main_screen()
 
