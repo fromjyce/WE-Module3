@@ -79,6 +79,9 @@ def spades_page():
     display_card_width = 90
     display_card_height = 140
 
+    selected_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Images\Back.png")
+    selected_card_image = pygame.transform.scale(selected_card_image, (display_card_width, display_card_height))
+
     #first row
     ace_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Spades\A.png")
     ace_card_image = pygame.transform.scale(ace_card_image, (display_card_width, display_card_height))
@@ -200,7 +203,7 @@ def spades_page():
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_x, mouse_y = pygame.mouse.get_pos()
-                print("Mouse Position:", mouse_x, mouse_y)
+                #print("Mouse Position:", mouse_x, mouse_y)
                 if mouse_x in a_button_range_x and mouse_y in a_button_range_y:
                     print("A")
                 elif mouse_x in two_button_range_x and mouse_y in two_button_range_y:
