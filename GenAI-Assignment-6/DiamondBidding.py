@@ -65,17 +65,46 @@ def choosing_suits_page():
     back_button_image = pygame.transform.scale(back_button_image, (button_width, button_height))
 
     spade_deck_button_rect = spade_deck_image.get_rect(center=(width // 2 - 200, height // 2 - 40))
-    heart_deck_image_rect = heart_deck_image.get_rect(center=(width // 2 , height // 2 - 40))
+    heart_deck_button_rect = heart_deck_image.get_rect(center=(width // 2 , height // 2 - 40))
     club_deck_button_rect = club_deck_image.get_rect(center=(width // 2 + 200, height // 2 - 40))    
     back_button_image_rect = back_button_image.get_rect(center=(width // 2, height // 2 + 130))
 
     screen.blit(spade_deck_image, spade_deck_button_rect)
-    screen.blit(heart_deck_image, heart_deck_image_rect)
+    screen.blit(heart_deck_image, heart_deck_button_rect)
     screen.blit(club_deck_image, club_deck_button_rect)
     screen.blit(back_button_image, back_button_image_rect)
 
 
     pygame.display.flip()
+
+    spade_deck_button_range_x = range(137, 261)
+    spade_deck_button_range_y = range(174, 344)
+
+    heart_deck_button_range_x = range(339, 458)
+    heart_deck_button_range_y = range(178, 341)
+
+    club_deck_button_range_x = range(544, 659)
+    club_deck_button_range_y = range(177, 341)
+
+    back_button_image_rect_range_x = range(303, 497)
+    back_button_image_rect_range_y = range(388, 465)
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_x, mouse_y = pygame.mouse.get_pos()
+                print("Mouse Position:", mouse_x, mouse_y)  # Debug information
+                if mouse_x in spade_deck_button_range_x and mouse_y in spade_deck_button_range_y:
+                    print("spade")
+                elif mouse_x in heart_deck_button_range_x and mouse_y in heart_deck_button_range_y:
+                    print("heart")
+                elif mouse_x in club_deck_button_range_x and mouse_y in club_deck_button_range_y:
+                    print("club")
+                elif mouse_x in back_button_image_rect_range_x and mouse_y in back_button_image_rect_range_y:
+                    main_screen()
 
 def helping_game_page():
     print("help")
