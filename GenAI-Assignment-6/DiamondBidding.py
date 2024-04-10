@@ -1,6 +1,7 @@
 import pygame
 import sys
 import time
+import random
 
 pygame.init()
 
@@ -42,29 +43,34 @@ def splash_screen():
     pygame.display.flip()
     time.sleep(5)
 
+def diamond_cards_shuffle() -> list[str]:
+    cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+    random.shuffle(cards)
+    return cards
+
 def spades_page():
     screen.fill(background_color)
-    font = pygame.font.SysFont(None, 48)
-    text = font.render("Spade", True, (0, 0, 0))
-    text_rect = text.get_rect(center=(width // 2, height // 2 - 175))
+    font = pygame.font.SysFont(None, 42)
+    text = font.render("Choose a Card", True, (0, 0, 0))
+    text_rect = text.get_rect(center=(width // 2, height // 2 - 250))
     screen.blit(text, text_rect)
 
     pygame.display.flip()
 
 def hearts_page():
     screen.fill(background_color)
-    font = pygame.font.SysFont(None, 48)
-    text = font.render("Hearts", True, (0, 0, 0))
-    text_rect = text.get_rect(center=(width // 2, height // 2 - 175))
+    font = pygame.font.SysFont(None, 42)
+    text = font.render("Choose a Card", True, (0, 0, 0))
+    text_rect = text.get_rect(center=(width // 2, height // 2 - 250))
     screen.blit(text, text_rect)
 
     pygame.display.flip()
 
 def clubs_page():
     screen.fill(background_color)
-    font = pygame.font.SysFont(None, 48)
-    text = font.render("Clubs", True, (0, 0, 0))
-    text_rect = text.get_rect(center=(width // 2, height // 2 - 175))
+    font = pygame.font.SysFont(None, 42)
+    text = font.render("Choose a Card", True, (0, 0, 0))
+    text_rect = text.get_rect(center=(width // 2, height // 2 - 250))
     screen.blit(text, text_rect)
 
     pygame.display.flip()
@@ -101,7 +107,6 @@ def choosing_suits_page():
     screen.blit(club_deck_image, club_deck_button_rect)
     screen.blit(back_button_image, back_button_image_rect)
 
-
     pygame.display.flip()
 
     spade_deck_button_range_x = range(137, 261)
@@ -134,7 +139,14 @@ def choosing_suits_page():
                     main_screen()
 
 def helping_game_page():
-    print("help")
+    screen.fill(background_color)
+    font = pygame.font.SysFont(None, 48)
+    text = font.render("How to Play this Game?", True, (0, 0, 0))
+    text_rect = text.get_rect(center=(width // 2, height // 2 - 175))
+    screen.blit(text, text_rect)
+
+    pygame.display.flip()
+
 
 def exit_button():
     pygame.quit()
