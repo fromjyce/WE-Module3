@@ -44,6 +44,9 @@ def splash_screen():
     pygame.display.flip()
     time.sleep(5)
 
+def calculate_card_value(card: str) -> int:
+    return {'J': 11, 'Q': 12, 'K': 13, 'A': 14}[card] if card in ['J', 'Q', 'K', 'A'] else int(card)
+
 def diamond_cards_shuffle() -> list[str]:
     cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
     random.shuffle(cards)
@@ -147,6 +150,49 @@ def spades_page():
 
     pygame.display.flip()
 
+    a_button_range_x = range(266, 350)
+    a_button_range_y = range(118, 244)
+
+    two_button_range_x = range(378, 450)
+    two_button_range_y = range(119, 247)
+
+
+    three_button_range_x = range(478, 558)
+    three_button_range_y = range(123, 247)
+
+    four_button_range_x = range(582, 666)
+    four_button_range_y = range(117, 251)
+
+    five_button_range_x = range(688, 772)
+    five_button_range_y = range(119, 246)
+
+    six_button_range_x = range(267, 354)
+    six_button_range_y = range(276, 404)
+
+    seven_button_range_x = range(374, 457)
+    seven_button_range_y = range(277, 402)
+
+    eight_button_range_x = range(481, 560)
+    eight_button_range_y = range(278, 404)
+
+    nine_button_range_x = range(587, 665)
+    nine_button_range_y = range(275, 404)
+
+    ten_button_range_x = range(690, 771)
+    ten_button_range_y = range(275, 402)
+
+    jack_button_range_x = range(270, 352)
+    jack_button_range_y = range(431, 560)
+
+    queen_button_range_x = range(375, 458)
+    queen_button_range_y = range(429, 560)
+
+    king_button_range_x = range(482, 560)
+    king_button_range_y = range(431, 564)
+
+    next_button_range_x = range(81, 199)
+    next_button_range_y = range(477, 520)
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -154,7 +200,34 @@ def spades_page():
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_x, mouse_y = pygame.mouse.get_pos()
-                if next_button_image_rect.collidepoint(mouse_x, mouse_y):
+                print("Mouse Position:", mouse_x, mouse_y)
+                if mouse_x in a_button_range_x and mouse_y in a_button_range_y:
+                    print("A")
+                elif mouse_x in two_button_range_x and mouse_y in two_button_range_y:
+                    print(2)
+                elif mouse_x in three_button_range_x and mouse_y in three_button_range_y:
+                    print(3)
+                elif mouse_x in four_button_range_x and mouse_y in four_button_range_y:
+                    print(4)
+                elif mouse_x in five_button_range_x and mouse_y in five_button_range_y:
+                    print(5)
+                elif mouse_x in six_button_range_x and mouse_y in six_button_range_y:
+                    print(6)
+                elif mouse_x in seven_button_range_x and mouse_y in seven_button_range_y:
+                    print(7)
+                elif mouse_x in eight_button_range_x and mouse_y in eight_button_range_y:
+                    print(8)
+                elif mouse_x in nine_button_range_x and mouse_y in nine_button_range_y:
+                    print(9)
+                elif mouse_x in ten_button_range_x and mouse_y in ten_button_range_y:
+                    print(10)
+                elif mouse_x in jack_button_range_x and mouse_y in jack_button_range_y:
+                    print("J")
+                elif mouse_x in queen_button_range_x and mouse_y in queen_button_range_y:
+                    print("Q")
+                elif mouse_x in king_button_range_x and mouse_y in king_button_range_y:
+                    print("K")
+                elif mouse_x in next_button_range_x and mouse_y in next_button_range_y:
                     current_card_index = (current_card_index + 1) % len(cards)  
                     spades_page()
 
@@ -316,6 +389,7 @@ while running:
             running = False
 
     main_screen()
+    #spades_page()
 
 
 pygame.quit()
