@@ -61,7 +61,7 @@ def is_tie(human_card:str, computer_card:str) -> bool:
 def who_won_round(human_card: str, computer_card: str) -> int:
     return 1 if did_computer_win(human_card, computer_card) else 2 if is_tie(human_card, computer_card) else 3
 
-def computer_card_choice(revealed_card: str,list_of_computer_cards: list[str]) -> str:
+def computer_card_choice(revealed_card: str,list_of_computer_cards: list = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']) -> str:
     n = calculate_card_value(revealed_card)
     min_range = n - 2 if n >= 3 else 2
     max_range = n + 2 if n < 14 else 14
@@ -111,8 +111,6 @@ def spades_page():
     diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
     diamond_card_button_rect = diamond_card_image.get_rect(center=(width // 2 - 260, height // 2 - 100))
     screen.blit(diamond_card_image, diamond_card_button_rect)
-
-    print(cards)
 
     # Display next button
     next_button_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Images\NextButton.png")
@@ -309,11 +307,8 @@ def spades_page():
                         diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
                         diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
                         screen.blit(diamond_card_image, diamond_card_button_rect)
-
+                        computer_card = computer_card_choice(revealed_card)
                         cards.remove(revealed_card)
-                        print(revealed_card)
-                        print(cards)
-
                         pygame.display.flip()
 
 def hearts_page():
