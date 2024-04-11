@@ -84,6 +84,16 @@ def add_score(human_score : float, computer_score : float, human_card : str, com
     #print(human_score,computer_score)
     return human_score, computer_score
 
+def winner_page():
+    screen.fill(background_color)
+    screen.fill(background_color)
+    font = pygame.font.SysFont(None, 42)
+    text = font.render("Winner!!", True, (0, 0, 0))
+    text_rect = text.get_rect(center=(width // 2, height // 2 - 240))
+    screen.blit(text, text_rect)
+
+    pygame.display.flip()
+
 def spades_page():
     current_card_index = 0
     screen.fill(background_color)
@@ -91,6 +101,7 @@ def spades_page():
     text = font.render("Choose a Card", True, (0, 0, 0))
     text_rect = text.get_rect(center=(width // 2, height // 2 - 240))
     screen.blit(text, text_rect)
+
     revealed_card_width = 125
     revealed_card_height = 175
     cards = diamond_cards_shuffle()
@@ -100,6 +111,8 @@ def spades_page():
     diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
     diamond_card_button_rect = diamond_card_image.get_rect(center=(width // 2 - 260, height // 2 - 100))
     screen.blit(diamond_card_image, diamond_card_button_rect)
+
+    print(cards)
 
     # Display next button
     next_button_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Images\NextButton.png")
@@ -288,13 +301,20 @@ def spades_page():
                     screen.blit(selected_card_image, king_card_button)
                     pygame.display.flip()
                 elif mouse_x in next_button_range_x and mouse_y in next_button_range_y:
-                    current_card_index = (current_card_index + 1) % len(cards)  # Update current card index
-                    revealed_card = cards[current_card_index]  # Update revealed card
-                    diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
-                    diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
-                    screen.blit(diamond_card_image, diamond_card_button_rect)
+                    if not cards:
+                        winner_page()
+                    else:
+                        current_card_index = (current_card_index) % len(cards)  # Update current card index
+                        revealed_card = cards[current_card_index]  # Update revealed card
+                        diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
+                        diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
+                        screen.blit(diamond_card_image, diamond_card_button_rect)
 
-                    pygame.display.flip()
+                        cards.remove(revealed_card)
+                        print(revealed_card)
+                        print(cards)
+
+                        pygame.display.flip()
 
 def hearts_page():
     screen.fill(background_color)
