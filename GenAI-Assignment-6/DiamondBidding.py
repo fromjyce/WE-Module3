@@ -59,9 +59,6 @@ def did_computer_win(human_card: str, computer_card: str) -> bool:
 def is_tie(human_card:str, computer_card:str) -> bool:
     return calculate_card_value(human_card) == calculate_card_value(computer_card)
 
-def who_won_round(human_card: str, computer_card: str) -> int:
-    return 1 if did_computer_win(human_card, computer_card) else 2 if is_tie(human_card, computer_card) else 3
-
 def computer_card_choice(revealed_card: str,list_of_computer_cards: list = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']) -> str:
     n = calculate_card_value(revealed_card)
     min_range = n - 2 if n >= 3 else 2
@@ -94,7 +91,7 @@ def display_winners(human_score, computer_score):
     else:
         winner = "It's a tie"
     
-    message = f"The winner is: {winner}!\n\nHuman Score: {human_score}\nComputer Score: {computer_score}"
+    message = f"The winner is: {winner}!\n\nYour Score: {human_score}\nComputer Score: {computer_score}"
     
     pyautogui.alert(message, "Winner")
 
@@ -124,10 +121,10 @@ def spades_page():
     display_current_card()
 
     # Display next button
-    next_button_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Images\HomeButton.png")
-    next_button_image = pygame.transform.scale(next_button_image, (200, 200))
-    next_button_image_rect = next_button_image.get_rect(center=(width // 2 - 260, height // 2 + 200))
-    screen.blit(next_button_image, next_button_image_rect)
+    home_button_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Images\HomeButton.png")
+    home_button_image = pygame.transform.scale(home_button_image, (200, 200))
+    home_button_image_rect = home_button_image.get_rect(center=(width // 2 - 260, height // 2 + 200))
+    screen.blit(home_button_image, home_button_image_rect)
 
     display_card_width = 90
     display_card_height = 140
@@ -147,7 +144,6 @@ def spades_page():
         card_rect = card_image.get_rect(center=(position))
         card_rects[card_value] = card_rect
         screen.blit(card_image, card_rect)
-
 
     pygame.display.flip()
 
@@ -176,6 +172,9 @@ def spades_page():
 
     click_count = 0
 
+    human_score = 0
+    computer_score = 0
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -195,9 +194,10 @@ def spades_page():
                             screen.blit(selected_card_image, card_rects[str(human_card)])
                             pygame.display.flip()
                             click_count += 1
+                            human_score, computer_score = add_score(human_score, computer_score, human_card, computer_card, revealed_score_card)
                             if click_count == 13:
-                                display_winners(10, 20)
-                        print("HUMAN: {h}; COMPUTER: {c}; Revealed: {r}".format(h=human_card, c=computer_card, r=revealed_score_card))
+                                display_winners(human_score, computer_score)
+                        #print("HUMAN: {h}; COMPUTER: {c}; Revealed: {r}".format(h=human_card, c=computer_card, r=revealed_score_card))
                         break
                 if mouse_x in home_button_range_x and mouse_y in home_button_range_y:
                     main_screen()
