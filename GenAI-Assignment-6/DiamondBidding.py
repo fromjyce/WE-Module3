@@ -106,11 +106,12 @@ def spades_page():
     revealed_card_height = 175
     cards = diamond_cards_shuffle()
     
-    revealed_card = cards[current_card_index]
-    diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
+    #revealed_card = cards[current_card_index]
+    diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Images\Joker.png")
     diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
     diamond_card_button_rect = diamond_card_image.get_rect(center=(width // 2 - 260, height // 2 - 100))
     screen.blit(diamond_card_image, diamond_card_button_rect)
+    #cards.remove(revealed_card)
 
     # Display next button
     next_button_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Images\NextButton.png")
@@ -124,73 +125,15 @@ def spades_page():
     selected_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Images\Joker.png")
     selected_card_image = pygame.transform.scale(selected_card_image, (display_card_width,display_card_height))
 
-    #first row
-    ace_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Spades\A.png")
-    ace_card_image = pygame.transform.scale(ace_card_image, (display_card_width, display_card_height))
-    ace_card_button = ace_card_image.get_rect(center=( width // 2 - 90, height // 2 - 115))
-    screen.blit(ace_card_image, ace_card_button)
-
-    two_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Spades\2.png")
-    two_card_image = pygame.transform.scale(two_card_image, (display_card_width, display_card_height))
-    two_card_button = two_card_image.get_rect(center=( width // 2 + 15, height // 2 - 115))
-    screen.blit(two_card_image, two_card_button)
-
-    three_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Spades\3.png")
-    three_card_image = pygame.transform.scale(three_card_image, (display_card_width, display_card_height))
-    three_card_button = three_card_image.get_rect(center=( width // 2 + 120, height // 2 - 115))
-    screen.blit(three_card_image, three_card_button)
-
-    four_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Spades\4.png")
-    four_card_image = pygame.transform.scale(four_card_image, (display_card_width, display_card_height))
-    four_card_button = four_card_image.get_rect(center=( width // 2 + 225, height // 2 - 115))
-    screen.blit(four_card_image, four_card_button)
-
-    five_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Spades\5.png")
-    five_card_image = pygame.transform.scale(five_card_image, (display_card_width, display_card_height))
-    five_card_button = five_card_image.get_rect(center=( width // 2 + 330, height // 2 - 115))
-    screen.blit(five_card_image, five_card_button)
-
-    #second row
-    six_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Spades\6.png")
-    six_card_image = pygame.transform.scale(six_card_image, (display_card_width, display_card_height))
-    six_card_button = six_card_image.get_rect(center=( width // 2 - 90, height // 2 + 40 ))
-    screen.blit(six_card_image, six_card_button)
-
-    seven_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Spades\7.png")
-    seven_card_image = pygame.transform.scale(seven_card_image, (display_card_width, display_card_height))
-    seven_card_button = seven_card_image.get_rect(center=( width // 2 + 15, height // 2 + 40))
-    screen.blit(seven_card_image, seven_card_button)
-
-    eight_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Spades\8.png")
-    eight_card_image = pygame.transform.scale(eight_card_image, (display_card_width, display_card_height))
-    eight_card_button = eight_card_image.get_rect(center=( width // 2 + 120, height // 2 + 40))
-    screen.blit(eight_card_image, eight_card_button)
-
-    nine_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Spades\9.png")
-    nine_card_image = pygame.transform.scale(nine_card_image, (display_card_width, display_card_height))
-    nine_card_button = nine_card_image.get_rect(center=( width // 2 + 225, height // 2 + 40))
-    screen.blit(nine_card_image, nine_card_button)
-
-    ten_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Spades\10.png")
-    ten_card_image = pygame.transform.scale(ten_card_image, (display_card_width, display_card_height))
-    ten_card_button = ten_card_image.get_rect(center=( width // 2 + 330, height // 2 + 40))
-    screen.blit(ten_card_image, ten_card_button)
+    card_positions = [((width // 2 - 90, height // 2 - 115), "A"), ((width // 2 + 15, height // 2 - 115), "2"), ((width // 2 + 120, height // 2 - 115), "3"), ((width // 2 + 225, height // 2 - 115), "4"), ((width // 2 + 330, height // 2 - 115), "5"),
+                      ((width // 2 - 90, height // 2 + 40), "6"), ((width // 2 + 15, height // 2 + 40), "7"), ((width // 2 + 120, height // 2 + 40), "8"), ((width // 2 + 225, height // 2 + 40), "9"), ((width // 2 + 330, height // 2 + 40), "10"), 
+                      ((width // 2 - 90, height // 2 + 195), "J"), ((width // 2 + 15, height // 2 + 195), "Q"), ((width // 2 + 120, height // 2 + 195), "K")]
     
-    #third row
-    jack_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Spades\J.png")
-    jack_card_image = pygame.transform.scale(jack_card_image, (display_card_width, display_card_height))
-    jack_card_button = jack_card_image.get_rect(center=( width // 2 - 90, height // 2 + 195 ))
-    screen.blit(jack_card_image, jack_card_button)
-
-    queen_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Spades\Q.png")
-    queen_card_image = pygame.transform.scale(queen_card_image, (display_card_width, display_card_height))
-    queen_card_button = queen_card_image.get_rect(center=( width // 2 + 15, height // 2 + 195))
-    screen.blit(queen_card_image, queen_card_button)
-
-    king_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Spades\K.png")
-    king_card_image = pygame.transform.scale(king_card_image, (display_card_width, display_card_height))
-    king_card_button = king_card_image.get_rect(center=( width // 2 + 120, height // 2 + 195))
-    screen.blit(king_card_image, king_card_button)
+    for position, card_value in card_positions:
+        card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Spades\{}.png".format(card_value))
+        card_image = pygame.transform.scale(card_image, (display_card_width, display_card_height))
+        card_rect = card_image.get_rect(center=(position))
+        screen.blit(card_image, card_rect)
 
 
     pygame.display.flip()
@@ -249,140 +192,8 @@ def spades_page():
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_x, mouse_y = pygame.mouse.get_pos()
-                #print("Mouse Position:", mouse_x, mouse_y)
-                if mouse_x in a_button_range_x and mouse_y in a_button_range_y:
-                    screen.blit(selected_card_image, ace_card_button)
-                    current_card_index = (current_card_index) % len(cards)
-                    revealed_card = cards[current_card_index]
-                    diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
-                    diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
-                    screen.blit(diamond_card_image, diamond_card_button_rect)
-                    human_card, computer_card, revealed_score_card = "A", computer_card_choice(revealed_card), revealed_card
-                    cards.remove(revealed_card)
-                    pygame.display.flip()
-                elif mouse_x in two_button_range_x and mouse_y in two_button_range_y:
-                    screen.blit(selected_card_image, two_card_button)
-                    current_card_index = (current_card_index) % len(cards)
-                    revealed_card = cards[current_card_index]
-                    diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
-                    diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
-                    screen.blit(diamond_card_image, diamond_card_button_rect)
-                    human_card, computer_card, revealed_score_card = 2, computer_card_choice(revealed_card), revealed_card
-                    cards.remove(revealed_card)
-                    pygame.display.flip()
-                elif mouse_x in three_button_range_x and mouse_y in three_button_range_y:
-                    screen.blit(selected_card_image, three_card_button)
-                    current_card_index = (current_card_index) % len(cards)
-                    revealed_card = cards[current_card_index]
-                    diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
-                    diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
-                    screen.blit(diamond_card_image, diamond_card_button_rect)
-                    human_card, computer_card, revealed_score_card = 3, computer_card_choice(revealed_card), revealed_card
-                    cards.remove(revealed_card)
-                    pygame.display.flip()
-                elif mouse_x in four_button_range_x and mouse_y in four_button_range_y:
-                    screen.blit(selected_card_image, four_card_button)
-                    current_card_index = (current_card_index) % len(cards)
-                    revealed_card = cards[current_card_index]
-                    diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
-                    diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
-                    screen.blit(diamond_card_image, diamond_card_button_rect)
-                    human_card, computer_card, revealed_score_card = 4, computer_card_choice(revealed_card), revealed_card
-                    cards.remove(revealed_card)
-                    pygame.display.flip()
-                elif mouse_x in five_button_range_x and mouse_y in five_button_range_y:
-                    screen.blit(selected_card_image, five_card_button)
-                    current_card_index = (current_card_index) % len(cards)
-                    revealed_card = cards[current_card_index]
-                    diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
-                    diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
-                    screen.blit(diamond_card_image, diamond_card_button_rect)
-                    human_card, computer_card, revealed_score_card = 5, computer_card_choice(revealed_card), revealed_card
-                    cards.remove(revealed_card)
-                    pygame.display.flip()
-                elif mouse_x in six_button_range_x and mouse_y in six_button_range_y:
-                    screen.blit(selected_card_image, six_card_button)
-                    current_card_index = (current_card_index) % len(cards)
-                    revealed_card = cards[current_card_index]
-                    diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
-                    diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
-                    screen.blit(diamond_card_image, diamond_card_button_rect)
-                    human_card, computer_card, revealed_score_card = 6, computer_card_choice(revealed_card), revealed_card
-                    cards.remove(revealed_card)
-                    pygame.display.flip()
-                elif mouse_x in seven_button_range_x and mouse_y in seven_button_range_y:
-                    screen.blit(selected_card_image, seven_card_button)
-                    current_card_index = (current_card_index) % len(cards)
-                    revealed_card = cards[current_card_index]
-                    diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
-                    diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
-                    screen.blit(diamond_card_image, diamond_card_button_rect)
-                    human_card, computer_card, revealed_score_card = 7, computer_card_choice(revealed_card), revealed_card
-                    cards.remove(revealed_card)
-                    pygame.display.flip()
-                elif mouse_x in eight_button_range_x and mouse_y in eight_button_range_y:
-                    screen.blit(selected_card_image, eight_card_button)
-                    current_card_index = (current_card_index) % len(cards)
-                    revealed_card = cards[current_card_index]
-                    diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
-                    diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
-                    screen.blit(diamond_card_image, diamond_card_button_rect)
-                    human_card, computer_card, revealed_score_card = 8, computer_card_choice(revealed_card), revealed_card
-                    cards.remove(revealed_card)
-                    pygame.display.flip()
-                elif mouse_x in nine_button_range_x and mouse_y in nine_button_range_y:
-                    screen.blit(selected_card_image, nine_card_button)
-                    current_card_index = (current_card_index) % len(cards)
-                    revealed_card = cards[current_card_index]
-                    diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
-                    diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
-                    screen.blit(diamond_card_image, diamond_card_button_rect)
-                    human_card, computer_card, revealed_score_card = 9, computer_card_choice(revealed_card), revealed_card
-                    cards.remove(revealed_card)
-                    pygame.display.flip()
-                elif mouse_x in ten_button_range_x and mouse_y in ten_button_range_y:
-                    screen.blit(selected_card_image, ten_card_button)
-                    current_card_index = (current_card_index) % len(cards)
-                    revealed_card = cards[current_card_index]
-                    diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
-                    diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
-                    screen.blit(diamond_card_image, diamond_card_button_rect)
-                    human_card, computer_card, revealed_score_card = 10, computer_card_choice(revealed_card), revealed_card
-                    cards.remove(revealed_card)
-                    pygame.display.flip()
-                elif mouse_x in jack_button_range_x and mouse_y in jack_button_range_y:
-                    screen.blit(selected_card_image, jack_card_button)
-                    current_card_index = (current_card_index) % len(cards)
-                    revealed_card = cards[current_card_index]
-                    diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
-                    diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
-                    screen.blit(diamond_card_image, diamond_card_button_rect)
-                    human_card, computer_card, revealed_score_card = "J", computer_card_choice(revealed_card), revealed_card
-                    cards.remove(revealed_card)
-                    pygame.display.flip()
-                elif mouse_x in queen_button_range_x and mouse_y in queen_button_range_y:
-                    screen.blit(selected_card_image, queen_card_button)
-                    current_card_index = (current_card_index) % len(cards)
-                    revealed_card = cards[current_card_index]
-                    diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
-                    diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
-                    screen.blit(diamond_card_image, diamond_card_button_rect)
-                    human_card, computer_card, revealed_score_card = "Q", computer_card_choice(revealed_card), revealed_card
-                    cards.remove(revealed_card)
-                    pygame.display.flip()
-                elif mouse_x in king_button_range_x and mouse_y in king_button_range_y:
-                    screen.blit(selected_card_image, king_card_button)
-                    current_card_index = (current_card_index) % len(cards)
-                    revealed_card = cards[current_card_index]
-                    diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
-                    diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
-                    screen.blit(diamond_card_image, diamond_card_button_rect)
-                    human_card, computer_card, revealed_score_card = "K", computer_card_choice(revealed_card), revealed_card
-                    cards.remove(revealed_card)
-                    pygame.display.flip()
-                if not cards:
-                    winner_page()
-                print(human_card, computer_card, revealed_score_card)
+                print("Mouse Position:", mouse_x, mouse_y)
+
 
 def hearts_page():
     screen.fill(background_color)
