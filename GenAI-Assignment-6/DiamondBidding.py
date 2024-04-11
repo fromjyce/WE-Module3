@@ -52,6 +52,37 @@ def diamond_cards_shuffle() -> list[str]:
     random.shuffle(cards)
     return cards
 
+def did_computer_win(human_card: str, computer_card: str) -> bool:
+    return calculate_card_value(human_card) < calculate_card_value(computer_card)
+
+def is_tie(human_card:str, computer_card:str) -> bool:
+    return calculate_card_value(human_card) == calculate_card_value(computer_card)
+
+def who_won_round(human_card: str, computer_card: str) -> int:
+    return 1 if did_computer_win(human_card, computer_card) else 2 if is_tie(human_card, computer_card) else 3
+
+def computer_card_choice(revealed_card: str,list_of_computer_cards: list[str]) -> str:
+    n = calculate_card_value(revealed_card)
+    min_range = n - 2 if n >= 3 else 2
+    max_range = n + 2 if n < 14 else 14
+    available_cards = [card for card in list_of_computer_cards if min_range <= calculate_card_value(card) <= max_range]
+    if available_cards:
+        computer_card = max(available_cards, key=lambda x: calculate_card_value(x))
+    else:
+        computer_card = random.choice(list_of_computer_cards)
+    list_of_computer_cards.remove(computer_card)
+    return computer_card
+
+def add_score(human_score : float, computer_score : float, human_card : str, computer_card : str, revealed_card : str):
+    if did_computer_win(human_card, computer_card):
+        computer_score += calculate_card_value(revealed_card)
+    elif is_tie(human_card, computer_card):
+        computer_score += calculate_card_value(revealed_card) / 2
+        human_score += calculate_card_value(revealed_card) / 2
+    else:
+        human_score += calculate_card_value(revealed_card)
+    #print(human_score,computer_score)
+    return human_score, computer_score
 
 def spades_page():
     current_card_index = 0
@@ -422,8 +453,8 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    #main_screen()
-    spades_page()
+    main_screen()
+    #spades_page()
 
 
 pygame.quit()
