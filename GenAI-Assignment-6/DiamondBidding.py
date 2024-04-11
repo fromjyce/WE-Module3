@@ -86,7 +86,6 @@ def add_score(human_score : float, computer_score : float, human_card : str, com
 
 def winner_page():
     screen.fill(background_color)
-    screen.fill(background_color)
     font = pygame.font.SysFont(None, 42)
     text = font.render("Winner!!", True, (0, 0, 0))
     text_rect = text.get_rect(center=(width // 2, height // 2 - 240))
@@ -125,6 +124,8 @@ def spades_page():
     selected_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Images\Joker.png")
     selected_card_image = pygame.transform.scale(selected_card_image, (display_card_width,display_card_height))
 
+    card_rects = {}
+
     card_positions = [((width // 2 - 90, height // 2 - 115), "A"), ((width // 2 + 15, height // 2 - 115), "2"), ((width // 2 + 120, height // 2 - 115), "3"), ((width // 2 + 225, height // 2 - 115), "4"), ((width // 2 + 330, height // 2 - 115), "5"),
                       ((width // 2 - 90, height // 2 + 40), "6"), ((width // 2 + 15, height // 2 + 40), "7"), ((width // 2 + 120, height // 2 + 40), "8"), ((width // 2 + 225, height // 2 + 40), "9"), ((width // 2 + 330, height // 2 + 40), "10"), 
                       ((width // 2 - 90, height // 2 + 195), "J"), ((width // 2 + 15, height // 2 + 195), "Q"), ((width // 2 + 120, height // 2 + 195), "K")]
@@ -133,6 +134,7 @@ def spades_page():
         card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Spades\{}.png".format(card_value))
         card_image = pygame.transform.scale(card_image, (display_card_width, display_card_height))
         card_rect = card_image.get_rect(center=(position))
+        card_rects[card_value] = card_rect
         screen.blit(card_image, card_rect)
 
 
@@ -192,7 +194,61 @@ def spades_page():
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_x, mouse_y = pygame.mouse.get_pos()
-                print("Mouse Position:", mouse_x, mouse_y)
+                #print("Mouse Position:", mouse_x, mouse_y)
+                if mouse_x in a_button_range_x and mouse_y in a_button_range_y:
+                    human_card = "A"
+                    screen.blit(selected_card_image, card_rects[human_card])
+                    pygame.display.flip()
+                elif mouse_x in two_button_range_x and mouse_y in two_button_range_y:
+                    human_card = 2
+                    screen.blit(selected_card_image, card_rects[str(human_card)])
+                    pygame.display.flip()
+                elif mouse_x in three_button_range_x and mouse_y in three_button_range_y:
+                    human_card = 3
+                    screen.blit(selected_card_image, card_rects[str(human_card)])
+                    pygame.display.flip()
+                elif mouse_x in four_button_range_x and mouse_y in four_button_range_y:
+                    human_card = 4
+                    screen.blit(selected_card_image, card_rects[str(human_card)])
+                    pygame.display.flip()
+                elif mouse_x in five_button_range_x and mouse_y in five_button_range_y:
+                    human_card = 5
+                    screen.blit(selected_card_image, card_rects[str(human_card)])
+                    pygame.display.flip()
+                elif mouse_x in six_button_range_x and mouse_y in six_button_range_y:
+                    human_card = 6
+                    screen.blit(selected_card_image, card_rects[str(human_card)])
+                    pygame.display.flip()
+                elif mouse_x in seven_button_range_x and mouse_y in seven_button_range_y:
+                    human_card = 7
+                    screen.blit(selected_card_image, card_rects[str(human_card)])
+                    pygame.display.flip()
+                elif mouse_x in eight_button_range_x and mouse_y in eight_button_range_y:
+                    human_card = 8
+                    screen.blit(selected_card_image, card_rects[str(human_card)])
+                    pygame.display.flip()
+                elif mouse_x in nine_button_range_x and mouse_y in nine_button_range_y:
+                    human_card = 9
+                    screen.blit(selected_card_image, card_rects[str(human_card)])
+                    pygame.display.flip()
+                elif mouse_x in ten_button_range_x and mouse_y in ten_button_range_y:
+                    human_card = 10
+                    screen.blit(selected_card_image, card_rects[str(human_card)])
+                    pygame.display.flip()
+                elif mouse_x in jack_button_range_x and mouse_y in jack_button_range_y:
+                    human_card = "J"
+                    screen.blit(selected_card_image, card_rects[human_card])
+                    pygame.display.flip()
+                elif mouse_x in queen_button_range_x and mouse_y in queen_button_range_y:
+                    human_card = "Q"
+                    screen.blit(selected_card_image, card_rects[human_card])
+                    pygame.display.flip()
+                elif mouse_x in king_button_range_x and mouse_y in king_button_range_y:
+                    human_card = "K"
+                    screen.blit(selected_card_image, card_rects[human_card])
+                    pygame.display.flip()
+                else:
+                    print("X")
 
 
 def hearts_page():
@@ -352,8 +408,8 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    main_screen()
-    #spades_page()
+    #main_screen()
+    spades_page()
 
 
 pygame.quit()
