@@ -1,3 +1,5 @@
+# Play the Diamond Bidding Game in Terminal Interface
+
 import random
 
 def calculate_card_value(card: str) -> int:
