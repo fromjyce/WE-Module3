@@ -146,45 +146,21 @@ def spades_page():
 
     pygame.display.flip()
 
-    a_button_range_x = range(266, 350)
-    a_button_range_y = range(118, 244)
-
-    two_button_range_x = range(378, 450)
-    two_button_range_y = range(119, 247)
-
-
-    three_button_range_x = range(478, 558)
-    three_button_range_y = range(123, 247)
-
-    four_button_range_x = range(582, 666)
-    four_button_range_y = range(117, 251)
-
-    five_button_range_x = range(688, 772)
-    five_button_range_y = range(119, 246)
-
-    six_button_range_x = range(267, 354)
-    six_button_range_y = range(276, 404)
-
-    seven_button_range_x = range(374, 457)
-    seven_button_range_y = range(277, 402)
-
-    eight_button_range_x = range(481, 560)
-    eight_button_range_y = range(278, 404)
-
-    nine_button_range_x = range(587, 665)
-    nine_button_range_y = range(275, 404)
-
-    ten_button_range_x = range(690, 771)
-    ten_button_range_y = range(275, 402)
-
-    jack_button_range_x = range(270, 352)
-    jack_button_range_y = range(431, 560)
-
-    queen_button_range_x = range(375, 458)
-    queen_button_range_y = range(429, 560)
-
-    king_button_range_x = range(482, 560)
-    king_button_range_y = range(431, 564)
+    button_ranges = {
+        (range(266, 350), range(118, 244)) : "A",
+        (range(378, 450), range(119, 247)) : 2, 
+        (range(478, 558), range(123, 247)) : 3,
+        (range(582, 666), range(117, 251)) : 4,
+        (range(688, 772), range(119, 246)) : 5,
+        (range(267, 354), range(276, 404)) : 6,
+        (range(374, 457), range(277, 402)) : 7,
+        (range(481, 560), range(278, 404)) : 8,
+        (range(587, 665), range(275, 404)) : 9,
+        (range(690, 771), range(275, 402)) : 10,
+        (range(270, 352), range(431, 560)) : "J",
+        (range(375, 458), range(429, 560)) : "Q",
+        (range(482, 560), range(431, 564)) : "K"
+    }
 
     next_button_range_x = range(81, 199)
     next_button_range_y = range(477, 520)
@@ -203,84 +179,348 @@ def spades_page():
                 #print("Mouse Position:", mouse_x, mouse_y)
                 if mouse_x in a_button_range_x and mouse_y in a_button_range_y:
                     human_card = "A"
-                    screen.blit(selected_card_image, card_rects[human_card])
-                    pygame.display.flip()
-                    current_card_index+=1
-                    display_current_card()
+                    current_card_index += 1
+                    if current_card_index < len(cards):
+                        computer_card = computer_card_choice(cards[current_card_index - 1])
+                        revealed_score_card = cards[current_card_index - 1]
+                        display_current_card()
+                        screen.blit(selected_card_image, card_rects[human_card])
+                        pygame.display.flip()
+                    else:
+                        winner_page()
+                    print("HUMAN: {h}; COMPUTER: {c}; Revealed: {r}".format(h=human_card, c=computer_card, r=revealed_score_card))
                 elif mouse_x in two_button_range_x and mouse_y in two_button_range_y:
                     human_card = 2
-                    screen.blit(selected_card_image, card_rects[str(human_card)])
-                    pygame.display.flip()
-                    current_card_index+=1
-                    display_current_card()
+                    current_card_index += 1
+                    if current_card_index < len(cards):
+                        computer_card = computer_card_choice(cards[current_card_index - 1])
+                        revealed_score_card = cards[current_card_index - 1]
+                        display_current_card()
+                        screen.blit(selected_card_image, card_rects[str(human_card)])
+                        pygame.display.flip()
+                    else:
+                        winner_page()
+                    print("HUMAN: {h}; COMPUTER: {c}; Revealed: {r}".format(h=human_card, c=computer_card, r=revealed_score_card))
                 elif mouse_x in three_button_range_x and mouse_y in three_button_range_y:
                     human_card = 3
-                    screen.blit(selected_card_image, card_rects[str(human_card)])
-                    pygame.display.flip()
-                    current_card_index+=1
-                    display_current_card()
+                    current_card_index += 1
+                    if current_card_index < len(cards):
+                        computer_card = computer_card_choice(cards[current_card_index - 1])
+                        revealed_score_card = cards[current_card_index - 1]
+                        display_current_card()
+                        screen.blit(selected_card_image, card_rects[str(human_card)])
+                        pygame.display.flip()
+                    else:
+                        winner_page()
+                    print("HUMAN: {h}; COMPUTER: {c}; Revealed: {r}".format(h=human_card, c=computer_card, r=revealed_score_card))
                 elif mouse_x in four_button_range_x and mouse_y in four_button_range_y:
                     human_card = 4
-                    screen.blit(selected_card_image, card_rects[str(human_card)])
-                    pygame.display.flip()
-                    current_card_index+=1
-                    display_current_card()
+                    current_card_index += 1
+                    if current_card_index < len(cards):
+                        computer_card = computer_card_choice(cards[current_card_index - 1])
+                        revealed_score_card = cards[current_card_index - 1]
+                        display_current_card()
+                        screen.blit(selected_card_image, card_rects[str(human_card)])
+                        pygame.display.flip()
+                    else:
+                        winner_page()
+                    print("HUMAN: {h}; COMPUTER: {c}; Revealed: {r}".format(h=human_card, c=computer_card, r=revealed_score_card))
                 elif mouse_x in five_button_range_x and mouse_y in five_button_range_y:
                     human_card = 5
-                    screen.blit(selected_card_image, card_rects[str(human_card)])
-                    pygame.display.flip()
-                    current_card_index+=1
-                    display_current_card()
+                    current_card_index += 1
+                    if current_card_index < len(cards):
+                        computer_card = computer_card_choice(cards[current_card_index - 1])
+                        revealed_score_card = cards[current_card_index - 1]
+                        display_current_card()
+                        screen.blit(selected_card_image, card_rects[str(human_card)])
+                        pygame.display.flip()
+                    else:
+                        winner_page()
+                    print("HUMAN: {h}; COMPUTER: {c}; Revealed: {r}".format(h=human_card, c=computer_card, r=revealed_score_card))
                 elif mouse_x in six_button_range_x and mouse_y in six_button_range_y:
                     human_card = 6
-                    screen.blit(selected_card_image, card_rects[str(human_card)])
-                    pygame.display.flip()
-                    current_card_index+=1
-                    display_current_card()
+                    current_card_index += 1
+                    if current_card_index < len(cards):
+                        computer_card = computer_card_choice(cards[current_card_index - 1])
+                        revealed_score_card = cards[current_card_index - 1]
+                        display_current_card()
+                        screen.blit(selected_card_image, card_rects[str(human_card)])
+                        pygame.display.flip()
+                    else:
+                        winner_page()
+                    print("HUMAN: {h}; COMPUTER: {c}; Revealed: {r}".format(h=human_card, c=computer_card, r=revealed_score_card))
                 elif mouse_x in seven_button_range_x and mouse_y in seven_button_range_y:
                     human_card = 7
-                    screen.blit(selected_card_image, card_rects[str(human_card)])
-                    pygame.display.flip()
-                    current_card_index+=1
-                    display_current_card()
+                    current_card_index += 1
+                    if current_card_index < len(cards):
+                        computer_card = computer_card_choice(cards[current_card_index - 1])
+                        revealed_score_card = cards[current_card_index - 1]
+                        display_current_card()
+                        screen.blit(selected_card_image, card_rects[str(human_card)])
+                        pygame.display.flip()
+                    else:
+                        winner_page()
+                    print("HUMAN: {h}; COMPUTER: {c}; Revealed: {r}".format(h=human_card, c=computer_card, r=revealed_score_card))
                 elif mouse_x in eight_button_range_x and mouse_y in eight_button_range_y:
                     human_card = 8
-                    screen.blit(selected_card_image, card_rects[str(human_card)])
-                    pygame.display.flip()
-                    current_card_index+=1
-                    display_current_card()
+                    current_card_index += 1
+                    if current_card_index < len(cards):
+                        computer_card = computer_card_choice(cards[current_card_index - 1])
+                        revealed_score_card = cards[current_card_index - 1]
+                        display_current_card()
+                        screen.blit(selected_card_image, card_rects[str(human_card)])
+                        pygame.display.flip()
+                    else:
+                        winner_page()
+                    print("HUMAN: {h}; COMPUTER: {c}; Revealed: {r}".format(h=human_card, c=computer_card, r=revealed_score_card))
                 elif mouse_x in nine_button_range_x and mouse_y in nine_button_range_y:
                     human_card = 9
-                    screen.blit(selected_card_image, card_rects[str(human_card)])
-                    pygame.display.flip()
-                    current_card_index+=1
-                    display_current_card()
+                    current_card_index += 1
+                    if current_card_index < len(cards):
+                        computer_card = computer_card_choice(cards[current_card_index - 1])
+                        revealed_score_card = cards[current_card_index - 1]
+                        display_current_card()
+                        screen.blit(selected_card_image, card_rects[str(human_card)])
+                        pygame.display.flip()
+                    else:
+                        winner_page()
+                    print("HUMAN: {h}; COMPUTER: {c}; Revealed: {r}".format(h=human_card, c=computer_card, r=revealed_score_card))
                 elif mouse_x in ten_button_range_x and mouse_y in ten_button_range_y:
                     human_card = 10
-                    screen.blit(selected_card_image, card_rects[str(human_card)])
-                    pygame.display.flip()
-                    current_card_index+=1
-                    display_current_card()
+                    current_card_index += 1
+                    if current_card_index < len(cards):
+                        computer_card = computer_card_choice(cards[current_card_index - 1])
+                        revealed_score_card = cards[current_card_index - 1]
+                        display_current_card()
+                        screen.blit(selected_card_image, card_rects[str(human_card)])
+                        pygame.display.flip()
+                    else:
+                        winner_page()
+                    print("HUMAN: {h}; COMPUTER: {c}; Revealed: {r}".format(h=human_card, c=computer_card, r=revealed_score_card))
                 elif mouse_x in jack_button_range_x and mouse_y in jack_button_range_y:
                     human_card = "J"
-                    screen.blit(selected_card_image, card_rects[human_card])
-                    pygame.display.flip()
-                    current_card_index+=1
-                    display_current_card()
+                    current_card_index += 1
+                    if current_card_index < len(cards):
+                        computer_card = computer_card_choice(cards[current_card_index - 1])
+                        revealed_score_card = cards[current_card_index - 1]
+                        display_current_card()
+                        screen.blit(selected_card_image, card_rects[human_card])
+                        pygame.display.flip()
+                    else:
+                        winner_page()
+                    print("HUMAN: {h}; COMPUTER: {c}; Revealed: {r}".format(h=human_card, c=computer_card, r=revealed_score_card))
                 elif mouse_x in queen_button_range_x and mouse_y in queen_button_range_y:
                     human_card = "Q"
-                    screen.blit(selected_card_image, card_rects[human_card])
-                    pygame.display.flip()
-                    current_card_index+=1
-                    display_current_card()
+                    current_card_index += 1
+                    if current_card_index < len(cards):
+                        computer_card = computer_card_choice(cards[current_card_index - 1])
+                        revealed_score_card = cards[current_card_index - 1]
+                        display_current_card()
+                        screen.blit(selected_card_image, card_rects[human_card])
+                        pygame.display.flip()
+                    else:
+                        winner_page()
+                    print("HUMAN: {h}; COMPUTER: {c}; Revealed: {r}".format(h=human_card, c=computer_card, r=revealed_score_card))
                 elif mouse_x in king_button_range_x and mouse_y in king_button_range_y:
                     human_card = "K"
-                    screen.blit(selected_card_image, card_rects[human_card])
-                    pygame.display.flip()
-                    current_card_index+=1
-                    display_current_card()
+                    current_card_index += 1
+                    if current_card_index < len(cards):
+                        computer_card = computer_card_choice(cards[current_card_index - 1])
+                        revealed_score_card = cards[current_card_index - 1]
+                        display_current_card()
+                        screen.blit(selected_card_image, card_rects[human_card])
+                        pygame.display.flip()
+                    else:
+                        winner_page()
+                    print("HUMAN: {h}; COMPUTER: {c}; Revealed: {r}".format(h=human_card, c=computer_card, r=revealed_score_card))
                 else:
                     print("X")
+
+                
+                # if mouse_x in next_button_range_x and mouse_y in next_button_range_y:
+                #     print(cards)
+                #     current_card_index = (current_card_index) % len(cards)
+                #     revealed_card = cards[current_card_index]
+                #     diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
+                #     diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
+                #     diamond_card_button_rect = diamond_card_image.get_rect(center=(width // 2 - 260, height // 2 - 100))
+                #     screen.blit(diamond_card_image, diamond_card_button_rect)
+                #     print(cards)
+                # elif mouse_x in a_button_range_x and mouse_y in a_button_range_y:
+                #     print(cards)
+                #     screen.blit(selected_card_image, ace_card_button)
+                #     current_card_index = (current_card_index) % len(cards)
+                #     revealed_card = cards[current_card_index]
+                #     diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
+                #     diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
+                #     diamond_card_button_rect = diamond_card_image.get_rect(center=(width // 2 - 260, height // 2 - 100))
+                #     screen.blit(diamond_card_image, diamond_card_button_rect)
+                #     human_card, computer_card, revealed_score_card = "A", computer_card_choice(revealed_card), revealed_card
+                #     cards.remove(revealed_card)
+                #     pygame.display.flip()
+                #     print(cards)
+                # elif mouse_x in two_button_range_x and mouse_y in two_button_range_y:
+                #     print(cards)
+                #     screen.blit(selected_card_image, two_card_button)
+                #     current_card_index = (current_card_index) % len(cards)
+                #     revealed_card = cards[current_card_index]
+                #     diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
+                #     diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
+                #     diamond_card_button_rect = diamond_card_image.get_rect(center=(width // 2 - 260, height // 2 - 100))
+                #     screen.blit(diamond_card_image, diamond_card_button_rect)
+                #     human_card, computer_card, revealed_score_card = 2, computer_card_choice(revealed_card), revealed_card
+                #     cards.remove(revealed_card)
+                #     pygame.display.flip()
+                #     print(cards)
+                # elif mouse_x in three_button_range_x and mouse_y in three_button_range_y:
+                #     print(cards)
+                #     screen.blit(selected_card_image, three_card_button)
+                #     current_card_index = (current_card_index) % len(cards)
+                #     revealed_card = cards[current_card_index]
+                #     diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
+                #     diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
+                #     diamond_card_button_rect = diamond_card_image.get_rect(center=(width // 2 - 260, height // 2 - 100))
+                #     screen.blit(diamond_card_image, diamond_card_button_rect)
+                #     human_card, computer_card, revealed_score_card = 3, computer_card_choice(revealed_card), revealed_card
+                #     cards.remove(revealed_card)
+                #     pygame.display.flip()
+                #     print(cards)
+                # elif mouse_x in four_button_range_x and mouse_y in four_button_range_y:
+                #     print(cards)
+                #     screen.blit(selected_card_image, four_card_button)
+                #     current_card_index = (current_card_index) % len(cards)
+                #     revealed_card = cards[current_card_index]
+                #     diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
+                #     diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
+                #     diamond_card_button_rect = diamond_card_image.get_rect(center=(width // 2 - 260, height // 2 - 100))
+                #     screen.blit(diamond_card_image, diamond_card_button_rect)
+                #     human_card, computer_card, revealed_score_card = 4, computer_card_choice(revealed_card), revealed_card
+                #     cards.remove(revealed_card)
+                #     pygame.display.flip()
+                #     print(cards)
+                # elif mouse_x in five_button_range_x and mouse_y in five_button_range_y:
+                #     print(cards)
+                #     screen.blit(selected_card_image, five_card_button)
+                #     current_card_index = (current_card_index) % len(cards)
+                #     revealed_card = cards[current_card_index]
+                #     diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
+                #     diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
+                #     diamond_card_button_rect = diamond_card_image.get_rect(center=(width // 2 - 260, height // 2 - 100))
+                #     screen.blit(diamond_card_image, diamond_card_button_rect)
+                #     human_card, computer_card, revealed_score_card = 5, computer_card_choice(revealed_card), revealed_card
+                #     cards.remove(revealed_card)
+                #     pygame.display.flip()
+                #     print(cards)
+                # elif mouse_x in six_button_range_x and mouse_y in six_button_range_y:
+                #     print(cards)
+                #     screen.blit(selected_card_image, six_card_button)
+                #     current_card_index = (current_card_index) % len(cards)
+                #     revealed_card = cards[current_card_index]
+                #     diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
+                #     diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
+                #     diamond_card_button_rect = diamond_card_image.get_rect(center=(width // 2 - 260, height // 2 - 100))
+                #     screen.blit(diamond_card_image, diamond_card_button_rect)
+                #     human_card, computer_card, revealed_score_card = 6, computer_card_choice(revealed_card), revealed_card
+                #     cards.remove(revealed_card)
+                #     print(cards)
+                #     pygame.display.flip()
+                # elif mouse_x in seven_button_range_x and mouse_y in seven_button_range_y:
+                #     print(cards)
+                #     screen.blit(selected_card_image, seven_card_button)
+                #     current_card_index = (current_card_index) % len(cards)
+                #     revealed_card = cards[current_card_index]
+                #     diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
+                #     diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
+                #     diamond_card_button_rect = diamond_card_image.get_rect(center=(width // 2 - 260, height // 2 - 100))
+                #     screen.blit(diamond_card_image, diamond_card_button_rect)
+                #     human_card, computer_card, revealed_score_card = 7, computer_card_choice(revealed_card), revealed_card
+                #     cards.remove(revealed_card)
+                #     pygame.display.flip()
+                #     print(cards)
+                # elif mouse_x in eight_button_range_x and mouse_y in eight_button_range_y:
+                #     print(cards)
+                #     screen.blit(selected_card_image, eight_card_button)
+                #     current_card_index = (current_card_index) % len(cards)
+                #     revealed_card = cards[current_card_index]
+                #     diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
+                #     diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
+                #     diamond_card_button_rect = diamond_card_image.get_rect(center=(width // 2 - 260, height // 2 - 100))
+                #     screen.blit(diamond_card_image, diamond_card_button_rect)
+                #     human_card, computer_card, revealed_score_card = 8, computer_card_choice(revealed_card), revealed_card
+                #     cards.remove(revealed_card)
+                #     pygame.display.flip()
+                #     print(cards)
+                # elif mouse_x in nine_button_range_x and mouse_y in nine_button_range_y:
+                #     print(cards)
+                #     screen.blit(selected_card_image, nine_card_button)
+                #     current_card_index = (current_card_index) % len(cards)
+                #     revealed_card = cards[current_card_index]
+                #     diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
+                #     diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
+                #     diamond_card_button_rect = diamond_card_image.get_rect(center=(width // 2 - 260, height // 2 - 100))
+                #     screen.blit(diamond_card_image, diamond_card_button_rect)
+                #     human_card, computer_card, revealed_score_card = 9, computer_card_choice(revealed_card), revealed_card
+                #     cards.remove(revealed_card)
+                #     pygame.display.flip()
+                #     print(cards)
+                # elif mouse_x in ten_button_range_x and mouse_y in ten_button_range_y:
+                #     print(cards)
+                #     screen.blit(selected_card_image, ten_card_button)
+                #     current_card_index = (current_card_index) % len(cards)
+                #     revealed_card = cards[current_card_index]
+                #     diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
+                #     diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
+                #     diamond_card_button_rect = diamond_card_image.get_rect(center=(width // 2 - 260, height // 2 - 100))
+                #     screen.blit(diamond_card_image, diamond_card_button_rect)
+                #     human_card, computer_card, revealed_score_card = 10, computer_card_choice(revealed_card), revealed_card
+                #     cards.remove(revealed_card)
+                #     pygame.display.flip()
+                #     print(cards)
+                # elif mouse_x in jack_button_range_x and mouse_y in jack_button_range_y:
+                #     print(cards)
+                #     screen.blit(selected_card_image, jack_card_button)
+                #     current_card_index = (current_card_index) % len(cards)
+                #     revealed_card = cards[current_card_index]
+                #     diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
+                #     diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
+                #     diamond_card_button_rect = diamond_card_image.get_rect(center=(width // 2 - 260, height // 2 - 100))
+                #     screen.blit(diamond_card_image, diamond_card_button_rect)
+                #     human_card, computer_card, revealed_score_card = "J", computer_card_choice(revealed_card), revealed_card
+                #     cards.remove(revealed_card)
+                #     pygame.display.flip()
+                #     print(cards)
+                # elif mouse_x in queen_button_range_x and mouse_y in queen_button_range_y:
+                #     print(cards)
+                #     screen.blit(selected_card_image, queen_card_button)
+                #     current_card_index = (current_card_index) % len(cards)
+                #     revealed_card = cards[current_card_index]
+                #     diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
+                #     diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
+                #     diamond_card_button_rect = diamond_card_image.get_rect(center=(width // 2 - 260, height // 2 - 100))
+                #     screen.blit(diamond_card_image, diamond_card_button_rect)
+                #     human_card, computer_card, revealed_score_card = "Q", computer_card_choice(revealed_card), revealed_card
+                #     cards.remove(revealed_card)
+                #     pygame.display.flip()
+                #     print(cards)
+                # elif mouse_x in king_button_range_x and mouse_y in king_button_range_y:
+                #     print(cards)
+                #     screen.blit(selected_card_image, king_card_button)
+                #     current_card_index = (current_card_index) % len(cards)
+                #     revealed_card = cards[current_card_index]
+                #     diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
+                #     diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
+                #     diamond_card_button_rect = diamond_card_image.get_rect(center=(width // 2 - 260, height // 2 - 100))
+                #     screen.blit(diamond_card_image, diamond_card_button_rect)
+                #     human_card, computer_card, revealed_score_card = "K", computer_card_choice(revealed_card), revealed_card
+                #     cards.remove(revealed_card)
+                #     pygame.display.flip()
+                #     print(cards)
+                # print("HUMAN: {human_card}; COMPUTER: {computer_card}; REVEAL CARD: {revealed_score_card}".format(human_card=human_card, computer_card=computer_card, revealed_score_card=revealed_score_card))
+                # winner = who_won_round(human_card, computer_card)
+                # win_str = "COMPUTER" if winner == 1 else "HUMAN" if winner == 3 else "TIE"
+                # print(win_str)
+                # if not cards:
+                #     winner_page()
 
 
 def hearts_page():
@@ -440,8 +680,8 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    main_screen()
-    #spades_page()
+    #main_screen()
+    spades_page()
 
 
 pygame.quit()
