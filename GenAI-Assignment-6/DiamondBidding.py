@@ -482,10 +482,33 @@ def choosing_suits_page():
 
 def helping_game_page():
     screen.fill(background_color)
-    font = pygame.font.SysFont(None, 48)
-    text = font.render("How to Play this Game?", True, (0, 0, 0))
-    text_rect = text.get_rect(center=(width // 2, height // 2 - 175))
-    screen.blit(text, text_rect)
+    font_title = pygame.font.SysFont(None, 48)
+    font_text = pygame.font.SysFont(None, 24)
+
+    # Title
+    title_text = font_title.render("How to Play this Game?", True, (0, 0, 0))
+    title_rect = title_text.get_rect(center=(width // 2, height // 2 - 175))
+    screen.blit(title_text, title_rect)
+
+    instructions = [
+        "1. Choose a Suit",
+        "2. From the given set of cards, choose a card to use to bid the displayed diamond card.",
+        "3. Remember that a computer with a strategy to play this game is competing with you.",
+        "4. For each displayed diamond card, the score on the diamond",
+        "card will go to the player that bids the highest.",
+        "5. At the end of the game, the total scores of the players are calculated and the winner is displayed."
+    ]
+    y_offset = 50
+    for instruction in instructions:
+        instruction_text = font_text.render(instruction, True, (0, 0, 0))
+        instruction_rect = instruction_text.get_rect(center=(width // 2, height // 2 - 150 + y_offset))
+        screen.blit(instruction_text, instruction_rect)
+        y_offset += 30
+
+    font_tag = pygame.font.SysFont(None, 35)
+    tag_text = font_tag.render("Outbid, Outsmart, Outplay: Dominate the Diamond Dash!", True, (255, 255, 255))
+    tag_rect = tag_text.get_rect(center=(width // 2, height // 2 + 125))
+    screen.blit(tag_text, tag_rect)
 
     pygame.display.flip()
 
@@ -557,7 +580,6 @@ while running:
             running = False
 
     main_screen()
-    #spades_page()
 
 
 pygame.quit()
