@@ -354,7 +354,7 @@ def clubs_page():
                       ((width // 2 - 90, height // 2 + 195), "J"), ((width // 2 + 15, height // 2 + 195), "Q"), ((width // 2 + 120, height // 2 + 195), "K")]
     
     for position, card_value in card_positions:
-        card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Spades\{}.png".format(card_value))
+        card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Clubs\{}.png".format(card_value))
         card_image = pygame.transform.scale(card_image, (display_card_width, display_card_height))
         card_rect = card_image.get_rect(center=(position))
         card_rects[card_value] = card_rect
