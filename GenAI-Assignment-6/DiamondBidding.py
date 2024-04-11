@@ -79,6 +79,9 @@ def spades_page():
     display_card_width = 90
     display_card_height = 140
 
+    selected_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Images\Joker.png")
+    selected_card_image = pygame.transform.scale(selected_card_image, (display_card_width,display_card_height))
+
     #first row
     ace_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Spades\A.png")
     ace_card_image = pygame.transform.scale(ace_card_image, (display_card_width, display_card_height))
@@ -203,36 +206,63 @@ def spades_page():
                 #print("Mouse Position:", mouse_x, mouse_y)
                 if mouse_x in a_button_range_x and mouse_y in a_button_range_y:
                     print("A")
+                    screen.blit(selected_card_image, ace_card_button)
+                    pygame.display.flip()
                 elif mouse_x in two_button_range_x and mouse_y in two_button_range_y:
                     print(2)
+                    screen.blit(selected_card_image, two_card_button)
+                    pygame.display.flip()
                 elif mouse_x in three_button_range_x and mouse_y in three_button_range_y:
                     print(3)
+                    screen.blit(selected_card_image, three_card_button)
+                    pygame.display.flip()
                 elif mouse_x in four_button_range_x and mouse_y in four_button_range_y:
                     print(4)
+                    screen.blit(selected_card_image, four_card_button)
+                    pygame.display.flip()
                 elif mouse_x in five_button_range_x and mouse_y in five_button_range_y:
                     print(5)
+                    screen.blit(selected_card_image, five_card_button)
+                    pygame.display.flip()
                 elif mouse_x in six_button_range_x and mouse_y in six_button_range_y:
                     print(6)
+                    screen.blit(selected_card_image, six_card_button)
+                    pygame.display.flip()
                 elif mouse_x in seven_button_range_x and mouse_y in seven_button_range_y:
                     print(7)
+                    screen.blit(selected_card_image, seven_card_button)
+                    pygame.display.flip()
                 elif mouse_x in eight_button_range_x and mouse_y in eight_button_range_y:
                     print(8)
+                    screen.blit(selected_card_image, eight_card_button)
+                    pygame.display.flip()
                 elif mouse_x in nine_button_range_x and mouse_y in nine_button_range_y:
                     print(9)
+                    screen.blit(selected_card_image, nine_card_button)
+                    pygame.display.flip()
                 elif mouse_x in ten_button_range_x and mouse_y in ten_button_range_y:
                     print(10)
+                    screen.blit(selected_card_image, ten_card_button)
+                    pygame.display.flip()
                 elif mouse_x in jack_button_range_x and mouse_y in jack_button_range_y:
                     print("J")
+                    screen.blit(selected_card_image, jack_card_button)
+                    pygame.display.flip()
                 elif mouse_x in queen_button_range_x and mouse_y in queen_button_range_y:
                     print("Q")
+                    screen.blit(selected_card_image, queen_card_button)
+                    pygame.display.flip()
                 elif mouse_x in king_button_range_x and mouse_y in king_button_range_y:
                     print("K")
+                    screen.blit(selected_card_image, king_card_button)
+                    pygame.display.flip()
                 elif mouse_x in next_button_range_x and mouse_y in next_button_range_y:
                     current_card_index = (current_card_index + 1) % len(cards)  # Update current card index
                     revealed_card = cards[current_card_index]  # Update revealed card
                     diamond_card_image = pygame.image.load(r"C:\Users\jaya2\Visual Code\Module3\GenAI-Assignment-6\Cards\Diamonds\{}.png".format(revealed_card))
                     diamond_card_image = pygame.transform.scale(diamond_card_image, (revealed_card_width, revealed_card_height))
                     screen.blit(diamond_card_image, diamond_card_button_rect)
+
                     pygame.display.flip()
 
 def hearts_page():
@@ -392,8 +422,8 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    main_screen()
-    #spades_page()
+    #main_screen()
+    spades_page()
 
 
 pygame.quit()
