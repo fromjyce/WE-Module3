@@ -1,3 +1,5 @@
+#Play Diamond Bidding Game using Graphical User Interface
+
 import pygame
 import sys
 import time
